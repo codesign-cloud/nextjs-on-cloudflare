@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npx @opennextjs/cloudflare@latest"
+    "deploy": "npx @opennextjs/cloudflare@latest",
+    "deploy:staging": "npx wrangler deploy --env staging",
+    "deploy:production": "npx @opennextjs/cloudflare@latest"
   },
   "dependencies": {
     "autoprefixer": "^10.4.21",
