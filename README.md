@@ -33,6 +33,11 @@ src/
 
 ## Getting Started
 
+### Prerequisites
+
+- **Node.js 20 or higher** (required for @opennextjs/cloudflare)
+- **npm** or **yarn** package manager
+
 ### Development
 
 1. **Install dependencies:**
