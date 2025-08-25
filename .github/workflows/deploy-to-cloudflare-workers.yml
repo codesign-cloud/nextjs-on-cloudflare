@@ -54,12 +54,16 @@ jobs:
       - name: Build application
         run: npm run build
 
+      - name: Build OpenNext for Cloudflare
+        run: npx opennextjs-cloudflare build
+
       - name: Cache build artifacts
         uses: actions/cache/save@v4
         if: always()
         with:
           path: |
             .next
+            .open-next
             node_modules
           key: artifacts-${{ github.sha }}-${{ github.run_id }}
 
@@ -86,6 +90,7 @@ jobs:
         with:
           path: |
             .next
+            .open-next
             node_modules
           key: artifacts-${{ github.sha }}-${{ github.run_id }}
           fail-on-cache-miss: false
@@ -110,6 +115,10 @@ jobs:
       - name: Build application (if cache miss)
         if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
         run: npm run build
+
+      - name: Build OpenNext for Cloudflare (if cache miss)
+        if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
+        run: npx opennextjs-cloudflare build
 
       - name: Deploy to Cloudflare Workers (Staging)
         uses: cloudflare/wrangler-action@v3
@@ -162,6 +171,7 @@ jobs:
         with:
           path: |
             .next
+            .open-next
             node_modules
           key: artifacts-${{ github.sha }}-${{ github.run_id }}
           fail-on-cache-miss: false
@@ -186,6 +196,10 @@ jobs:
       - name: Build application (if cache miss)
         if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
         run: npm run build
+
+      - name: Build OpenNext for Cloudflare (if cache miss)
+        if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
+        run: npx opennextjs-cloudflare build
 
       - name: Deploy to Cloudflare Workers (Production)
         uses: cloudflare/wrangler-action@v3

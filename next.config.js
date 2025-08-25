@@ -8,3 +8,7 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+// Import and initialize OpenNext Cloudflare for development
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();

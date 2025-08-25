@@ -10,9 +10,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npx @opennextjs/cloudflare@latest deploy",
-    "deploy:staging": "npx @opennextjs/cloudflare@latest deploy --env staging",
-    "deploy:production": "npx @opennextjs/cloudflare@latest deploy"
+    "preview": "npm run build && opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare deploy",
+    "deploy:staging": "opennextjs-cloudflare deploy --env staging",
+    "deploy:production": "opennextjs-cloudflare deploy",
+    "deploy:local": "npm run build && opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "npm run build && opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "autoprefixer": "^10.4.21",
@@ -29,6 +33,7 @@
     "eslint-config-next": "^15.0.0",
     "postcss": "^8.0.0",
     "tailwindcss": "^3.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "wrangler": "^3.99.0"
   }
 }
