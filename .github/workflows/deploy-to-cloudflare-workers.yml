@@ -15,16 +15,35 @@ jobs:
   test:
     runs-on: ubuntu-latest
     name: Test and Lint
+    outputs:
+      build-cache-key: ${{ steps.cache-keys.outputs.build-cache-key }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Generate cache keys
+        id: cache-keys
+        run: |
+          echo "build-cache-key=build-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', 'next.config.js', 'tailwind.config.js', 'postcss.config.js', 'wrangler.toml') }}" >> $GITHUB_OUTPUT
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22.12"
           cache: "npm"
+
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+            .next/standalone
+            .next/static
+          key: ${{ steps.cache-keys.outputs.build-cache-key }}
+          restore-keys: |
+            build-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
+            build-${{ runner.os }}-
 
       - name: Install dependencies
         run: npm ci
@@ -34,6 +53,15 @@ jobs:
 
       - name: Build application
         run: npm run build
+
+      - name: Cache build artifacts
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            .next
+            node_modules
+          key: artifacts-${{ github.sha }}-${{ github.run_id }}
 
   deploy-staging:
     runs-on: ubuntu-latest
@@ -52,10 +80,35 @@ jobs:
           node-version: "22.12"
           cache: "npm"
 
-      - name: Install dependencies
+      - name: Restore build artifacts
+        id: restore-build-artifacts
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            .next
+            node_modules
+          key: artifacts-${{ github.sha }}-${{ github.run_id }}
+          fail-on-cache-miss: false
+
+      - name: Install dependencies (if cache miss)
+        if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Build application
+      - name: Cache Next.js build (restore)
+        if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+            .next/standalone
+            .next/static
+          key: ${{ needs.test.outputs.build-cache-key }}
+          restore-keys: |
+            build-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
+            build-${{ runner.os }}-
+
+      - name: Build application (if cache miss)
+        if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
         run: npm run build
 
       - name: Deploy to Cloudflare Workers (Staging)
@@ -103,10 +156,35 @@ jobs:
           node-version: "22.12"
           cache: "npm"
 
-      - name: Install dependencies
+      - name: Restore build artifacts
+        id: restore-build-artifacts
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            .next
+            node_modules
+          key: artifacts-${{ github.sha }}-${{ github.run_id }}
+          fail-on-cache-miss: false
+
+      - name: Install dependencies (if cache miss)
+        if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Build application
+      - name: Cache Next.js build (restore)
+        if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+            .next/standalone
+            .next/static
+          key: ${{ needs.test.outputs.build-cache-key }}
+          restore-keys: |
+            build-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
+            build-${{ runner.os }}-
+
+      - name: Build application (if cache miss)
+        if: steps.restore-build-artifacts.outputs.cache-hit != 'true'
         run: npm run build
 
       - name: Deploy to Cloudflare Workers (Production)
