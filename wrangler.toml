@@ -1,0 +1,10 @@
+name = "nextjs-ssr-app"
+compatibility_date = "2024-01-01"
+node_compat = true
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+
+# Worker size limit: 10 MiB (Paid) / 3 MiB (Free)
+# Monitor compressed size during deployment
