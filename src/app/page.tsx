@@ -2,15 +2,17 @@ import Link from 'next/link'
 import { RouteConfig } from '@/types/api'
 
 const routes: RouteConfig[] = [
-  { 
-    path: '/ssr-demo', 
-    label: 'SSR Demo', 
-    description: 'Server-side rendering example with real-time data fetching' 
+  {
+    path: '/ssr-demo',
+    label: 'SSR Demo',
+    description: 'Server-side rendering example with real-time data fetching',
+    newWindow: false,
   },
-  { 
-    path: '/api/server-info', 
-    label: 'Server Info API', 
-    description: 'Direct API endpoint returning server ID and timestamp' 
+  {
+    path: '/api/server-info',
+    label: 'Server Info API',
+    description: 'Direct API endpoint returning server ID and timestamp',
+    newWindow: true,
   }
 ];
 
@@ -62,8 +64,9 @@ export default function HomePage() {
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   {route.description}
                 </p>
-                <Link 
+                <Link
                   href={route.path}
+                  target={route.newWindow ? '_blank' : '_self'}
                   className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors duration-200"
                 >
                   {route.path.startsWith('/api') ? 'View API Response' : 'View Demo'}

@@ -51,6 +51,7 @@ export interface RouteConfig {
   path: string;
   label: string;
   description: string;
+  newWindow?: boolean;
 }
 
 // API Data Fetcher component props
