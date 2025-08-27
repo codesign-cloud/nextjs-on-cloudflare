@@ -123,6 +123,21 @@ Cache-Control: public,max-age=31536000,immutable
 
 ------------------------
 
+👉🏼 `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are required at GH Actions for deployment
+
+Goto https://dash.cloudflare.com/profile/api-tokens to generate a token for CLOUDFLARE_API_TOKEN
+
+CLOUDFLARE_ACCOUNT_ID can be found in the URL of the dashboard (dashboard.cloudflare.com/[id]) or in CF Account Home > Overflow menu > Copy Account ID 
+
+Goto GH > Your Repo > Settings > Secrets > New repository secret > CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
+
+✅ Put non-sensitive CF variables in `wrangler.jsonc`
+
+✅ CF Secrets are set via `wrangler secret put`
+
+✅ Ensure public variables start with NEXT_PUBLIC_
+
+---------------------------
 
 ### Pages
 
@@ -184,35 +199,9 @@ Cache-Control: public,max-age=31536000,immutable
 
 The project is configured for OpenNext deployment:
 
-- **`wrangler.toml`** - Cloudflare Workers configuration
+- **`wrangler.jsonc`** - Cloudflare Workers configuration
 - **`next.config.js`** - Next.js configuration optimized for OpenNext
 - **Node.js Runtime** - Full Node.js API support (not Edge Runtime)
-
-## Key Technical Features
-
-### Server-Side Rendering (SSR)
-
-The `/ssr-demo` page demonstrates:
-- Server-side data generation
-- No client-side loading states for initial data
-- SEO-friendly content
-- Fast initial page load
-
-### API Routes
-
-The `/api/server-info` endpoint showcases:
-- Full Node.js runtime capabilities
-- UUID generation using Node.js `crypto` module
-- CORS headers for cross-origin requests
-- Proper error handling and response formatting
-
-### Client-Side Interactions
-
-The `ApiDataFetcher` component provides:
-- Real-time API data fetching
-- Loading and error states
-- Interactive user experience
-- Type-safe API responses
 
 ## OpenNext Advantages
 
@@ -242,23 +231,6 @@ Set in `wrangler.toml` or Cloudflare dashboard:
 ENVIRONMENT = "production"
 SERVER_ID = "your-server-id"
 ```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Worker Size Limits:**
-   - Free tier: 3 MiB compressed
-   - Paid tier: 10 MiB compressed
-   - Monitor bundle size during deployment
-
-2. **Node.js Compatibility:**
-   - OpenNext provides full Node.js runtime
-   - No need for polyfills or edge-specific code
-
-3. **CORS Issues:**
-   - API routes include proper CORS headers
-   - Test API endpoints independently
 
 ## Learn More
 
