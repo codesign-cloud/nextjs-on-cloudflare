@@ -13,7 +13,8 @@ module.exports = nextConfig;
 // Cloudflare Workers runtime configuration
 // Initialize OpenNext Cloudflare only during local development
 if (process.env.NODE_ENV === "development") {
-  const { initOpenNextCloudflareForDev } = require("@opennextjs/cloudflare");
-  initOpenNextCloudflareForDev();
+  import("@opennextjs/cloudflare").then(({ initOpenNextCloudflareForDev }) => {
+    initOpenNextCloudflareForDev();
+  });
 }
 // ========================================================
