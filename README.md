@@ -55,6 +55,75 @@ src/
    http://localhost:3000
    ```
 
+
+------------------------
+
+# Integrating Cloudflare Workers
+
+
+1. ```npm install --save-dev wrangler@latest```
+
+
+2. ```npm install @opennextjs/cloudflare@latest```
+
+
+3. Create a `wrangler.jsonc` file [Doc Link](https://opennext.js.org/cloudflare/get-started#3-create-a-wrangler-configuration-file)
+
+
+4. Add an `open-next.config.ts` file
+
+
+5. Add a `.dev.vars` file with content `NEXTJS_ENV=development`
+
+You can also add the following lines to `.gitignore`
+````
+# Cloudflare
+cloudflare-env.d.ts
+/wrangler.toml.backup
+/wrangler.jsonc.backup
+````
+
+6. Update the package.json file
+
+```````jsonc
+// The build script must invoke the Next.js build command, it will be invoke by opennextjs-cloudflare build.
+"build": "next build",
+
+//npm run preview: Builds your app and serves it locally, allowing you to quickly preview your app running locally in the Workers runtime, via a single command.
+"preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+
+//npm run deploy: Builds your app, and then immediately deploys it to Cloudflare.
+"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+
+//npm run upload: Builds your app, and then uploads a new version of it to Cloudflare.
+"upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+
+//cf-typegen: Generates a cloudflare-env.d.ts file at the root of your project containing the types for the env.
+"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+```````
+
+
+7. Add Static Asset Caching
+
+Add a `public/_headers` file, with the following headers at the least:
+`````
+/_next/static/*
+Cache-Control: public,max-age=31536000,immutable
+`````
+
+
+8. Add caching with Cloudflare R2
+
+
+9. Remove any export const runtime = "edge"; if present (just verify)
+10. Add .open-next to .gitignore
+11. Remove static `@cloudflare/next-on-pages` (if necessary/just verify)
+12. Develop locally (add `initOpenNextCloudflareForDev()` block in `next.config.js`)
+13. Deploy to Cloudflare Workers (via `npm run deploy`; manual deploy via `npx wrangler deploy --config wrangler.jsonc`)
+
+------------------------
+
+
 ### Pages
 
 - **Home** (`/`) - Landing page with navigation
