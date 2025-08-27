@@ -118,7 +118,7 @@ Cache-Control: public,max-age=31536000,immutable
 9. Remove any export const runtime = "edge"; if present (just verify)
 10. Add .open-next to .gitignore
 11. Remove static `@cloudflare/next-on-pages` (if necessary/just verify)
-12. Develop locally (add `initOpenNextCloudflareForDev()` block in `next.config.js`)
+12. Develop locally (add `initOpenNextCloudflareForDev()` block in `next.config.ts`)
 13. Deploy to Cloudflare Workers (via `npm run deploy`; manual deploy via `npx wrangler deploy --config wrangler.jsonc`)
 
 ------------------------
