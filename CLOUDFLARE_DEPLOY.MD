@@ -309,12 +309,12 @@ To enable dynamic URL notifications in your CI/CD pipeline:
 
    **OR For Cloudflare Subdomain:**
    ```
-   Name: CLOUDFLARE_SUBDOMAIN
+   Name: CLOUDFLARE_WORKERS_SUBDOMAIN
    Value: your-company-name
    ```
 
 3. **Variable Priority**
-   - `CUSTOM_DOMAIN` takes precedence over `CLOUDFLARE_SUBDOMAIN`
+   - `CUSTOM_DOMAIN` takes precedence over `CLOUDFLARE_WORKERS_SUBDOMAIN`
    - If both are set, `CUSTOM_DOMAIN` will be used
    - If neither is set, defaults to `your-subdomain.workers.dev`
 

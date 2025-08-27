@@ -136,10 +136,10 @@ jobs:
           echo "🚀 Deployment to staging successful!"
           if [ -n "${{ vars.CUSTOM_DOMAIN }}" ]; then
             echo "Staging URL: https://staging.${{ vars.CUSTOM_DOMAIN }}"
-          elif [ -n "${{ vars.CLOUDFLARE_SUBDOMAIN }}" ]; then
-            echo "Staging URL: https://nextjs-ssr-app-staging.${{ vars.CLOUDFLARE_SUBDOMAIN }}.workers.dev"
+          elif [ -n "${{ vars.CLOUDFLARE_WORKERS_SUBDOMAIN }}" ]; then
+            echo "Staging URL: https://nextjs-on-cloudflare-staging.${{ vars.CLOUDFLARE_WORKERS_SUBDOMAIN }}.workers.dev"
           else
-            echo "Staging URL: https://nextjs-ssr-app-staging.your-subdomain.workers.dev"
+            echo "Staging URL: https://nextjs-on-cloudflare-staging.your-subdomain.workers.dev"
           fi
 
       - name: Notify staging deployment failure
@@ -217,10 +217,10 @@ jobs:
           echo "🚀 Deployment to production successful!"
           if [ -n "${{ vars.CUSTOM_DOMAIN }}" ]; then
             echo "Application URL: https://${{ vars.CUSTOM_DOMAIN }}"
-          elif [ -n "${{ vars.CLOUDFLARE_SUBDOMAIN }}" ]; then
-            echo "Application URL: https://nextjs-ssr-app.${{ vars.CLOUDFLARE_SUBDOMAIN }}.workers.dev"
+          elif [ -n "${{ vars.CLOUDFLARE_WORKERS_SUBDOMAIN }}" ]; then
+            echo "Application URL: https://nextjs-on-cloudflare.${{ vars.CLOUDFLARE_WORKERS_SUBDOMAIN }}.workers.dev"
           else
-            echo "Application URL: https://nextjs-ssr-app.your-subdomain.workers.dev"
+            echo "Application URL: https://nextjs-on-cloudflare.your-subdomain.workers.dev"
           fi
 
       - name: Notify deployment failure

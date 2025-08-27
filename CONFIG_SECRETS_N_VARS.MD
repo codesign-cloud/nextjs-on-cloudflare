@@ -59,11 +59,11 @@ For dynamic deployment URLs in CI/CD notifications:
 | Variable Name | Description | Example Value | Where to Add |
 |---------------|-------------|---------------|--------------|
 | `CUSTOM_DOMAIN` | Your custom domain (takes priority) | `myapp.com` | GitHub Repository → Settings → Secrets and variables → Actions → Variables |
-| `CLOUDFLARE_SUBDOMAIN` | Your Cloudflare Workers subdomain | `my-company` | GitHub Repository → Settings → Secrets and variables → Actions → Variables |
+| `CLOUDFLARE_WORKERS_SUBDOMAIN` | Your Cloudflare Workers subdomain | `my-company` | GitHub Repository → Settings → Secrets and variables → Actions → Variables |
 
 **Variable Priority:**
 - If `CUSTOM_DOMAIN` is set: Uses `https://myapp.com` and `https://staging.myapp.com`
-- If only `CLOUDFLARE_SUBDOMAIN` is set: Uses `https://nextjs-ssr-app.my-company.workers.dev`
+- If only `CLOUDFLARE_WORKERS_SUBDOMAIN` is set: Uses `https://nextjs-ssr-app.my-company.workers.dev`
 - If neither is set: Falls back to `https://nextjs-ssr-app.your-subdomain.workers.dev`
 
 ### Application Environment Variables (Optional)
@@ -103,7 +103,7 @@ Add these if your application needs them:
 
 **Variables Tab (Non-Sensitive Data):**
 - `CUSTOM_DOMAIN` (optional)
-- `CLOUDFLARE_SUBDOMAIN` (optional)
+- `CLOUDFLARE_WORKERS_SUBDOMAIN` (optional)
 - `NEXT_PUBLIC_API_URL` (if needed)
 
 ### 2. GitHub Environments
@@ -211,7 +211,7 @@ wrangler secret put DATABASE_URL --env production
 2. **Add Optional Variables** (if needed):
    - Click **Variables** tab → **New repository variable**
    - Add `CUSTOM_DOMAIN` with your domain (e.g., `myapp.com`)
-   - OR add `CLOUDFLARE_SUBDOMAIN` with your subdomain (e.g., `my-company`)
+   - OR add `CLOUDFLARE_WORKERS_SUBDOMAIN` with your subdomain (e.g., `my-company`)
 
 3. **Create Environments**:
    - Go to `Repository → Settings → Environments`
@@ -306,7 +306,7 @@ npx wrangler secret list
 ### 3. Test Deployment URLs
 After setting up GitHub variables, check CI/CD notifications show correct URLs:
 - **With CUSTOM_DOMAIN**: `https://myapp.com`
-- **With CLOUDFLARE_SUBDOMAIN**: `https://nextjs-ssr-app.my-company.workers.dev`
+- **With CLOUDFLARE_WORKERS_SUBDOMAIN**: `https://nextjs-ssr-app.my-company.workers.dev`
 - **Without either**: `https://nextjs-ssr-app.your-subdomain.workers.dev`
 
 ### 4. Test Application Environment Variables
@@ -360,7 +360,7 @@ curl -I https://myapp.com
 #### 4. Deployment URLs Incorrect
 **Error**: Wrong URLs in CI/CD notifications
 **Check**:
-- ✅ `CUSTOM_DOMAIN` or `CLOUDFLARE_SUBDOMAIN` variables are set correctly
+- ✅ `CUSTOM_DOMAIN` or `CLOUDFLARE_WORKERS_SUBDOMAIN` variables are set correctly
 - ✅ Variables are in **Variables** tab, not **Secrets** tab
 - ✅ Variable names match exactly (case-sensitive)
 

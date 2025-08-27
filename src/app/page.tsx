@@ -26,7 +26,7 @@ export default function HomePage() {
             Next.js 15+ SSR on Cloudflare Workers
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
-            Powered by OpenNext for full Node.js runtime support
+            Powered by <code>OpenNext</code> for full <code>Node.js</code> runtime support
           </p>
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 max-w-2xl mx-auto">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">

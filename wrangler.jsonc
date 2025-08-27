@@ -24,18 +24,21 @@
   ],
   "vars": {
     // Production defaults; override in envs below as needed
-    "NEXTJS_ENV": "production"
+    "NEXTJS_ENV": "production",
+    "CLOUDFLARE_WORKERS_SUBDOMAIN": "apiary"
   },
   "env": {
     "staging": {
       "vars": {
-        "NEXTJS_ENV": "staging"
+        "NEXTJS_ENV": "staging",
+        "CLOUDFLARE_WORKERS_SUBDOMAIN": "apiary"
       }
       // Add staging-specific bindings here if needed
     },
     "production": {
       "vars": {
-        "NEXTJS_ENV": "production"
+        "NEXTJS_ENV": "production",
+        "CLOUDFLARE_WORKERS_SUBDOMAIN": "apiary"
       }
       // Add production-specific bindings here if needed
     }
