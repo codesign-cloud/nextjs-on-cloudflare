@@ -9,6 +9,11 @@ const nextConfig = {
 
 module.exports = nextConfig;
 
-// Import and initialize OpenNext Cloudflare for development
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-initOpenNextCloudflareForDev();
+// ========================================================
+// Cloudflare Workers runtime configuration
+// Initialize OpenNext Cloudflare only during local development
+if (process.env.NODE_ENV === "development") {
+  const { initOpenNextCloudflareForDev } = require("@opennextjs/cloudflare");
+  initOpenNextCloudflareForDev();
+}
+// ========================================================

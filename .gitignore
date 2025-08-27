@@ -3,6 +3,9 @@ node_modules/
 /.pnp
 .pnp.js
 
+#Jetbrains
+.idea/
+
 # qoder
 .qoder/
 
@@ -39,6 +42,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Cloudflare
+## Cloudflare
 cloudflare-env.d.ts
 /wrangler.toml.backup
+/wrangler.jsonc.backup
