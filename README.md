@@ -6,6 +6,10 @@ A Next.js 15+ application demonstrating Server-Side Rendering (SSR) and API rout
 
 - ✅ **Next.js 15+** with App Router
 - ✅ **Server-Side Rendering (SSR)** with real-time data
+- ✅ **Incremental Static Regeneration (ISR)** with automatic revalidation
+- ✅ **Next/Image optimization** with lazy loading and responsive sizing
+- ✅ **Next/Font optimization** with fallback strategies
+- ✅ **Environment Variables** (server-side and client-side)
 - ✅ **API Routes** with full Node.js runtime support
 - ✅ **TypeScript** for type safety
 - ✅ **Tailwind CSS** for styling
@@ -20,16 +24,66 @@ src/
 │   ├── api/
 │   │   └── server-info/         # API route returning server metadata
 │   │       └── route.ts
+│   ├── env-demo/               # Environment variables demonstration
+│   │   └── page.tsx
+│   ├── font-demo/              # Next/Font optimization demo
+│   │   └── page.tsx
+│   ├── image-demo/             # Next/Image optimization demo
+│   │   └── page.tsx
+│   ├── isr-demo/               # ISR demonstration
+│   │   ├── [id]/               # Dynamic ISR pages
+│   │   │   └── page.tsx
+│   │   └── page.tsx
 │   ├── ssr-demo/               # SSR demonstration page
 │   │   ├── components/
 │   │   │   └── ApiDataFetcher.tsx
 │   │   └── page.tsx
 │   ├── globals.css
 │   ├── layout.tsx              # Root layout component
-│   └── page.tsx                # Home page
+│   └── page.tsx                # Home page with all demos
 └── types/
     └── api.ts                  # TypeScript type definitions
 ```
+
+## Demo Pages
+
+This repository includes comprehensive demonstrations of all major Next.js features:
+
+### 🚀 **SSR Demo** (`/ssr-demo`)
+- Server-side rendering with real-time data fetching
+- Server metadata and request tracking
+- Client-side hydration and interaction
+- API data fetching demonstration
+
+### 🔄 **ISR Demo** (`/isr-demo`)
+- Incremental Static Regeneration with 30-second revalidation
+- Individual blog posts with 60-second revalidation
+- Automatic background regeneration
+- Static performance with dynamic content
+
+### 🖼️ **Next/Image Demo** (`/image-demo`)
+- Responsive image optimization
+- Lazy loading and blur placeholders
+- Multiple aspect ratios (square, portrait, landscape)
+- Performance optimization features
+
+### 🔤 **Next/Font Demo** (`/font-demo`)
+- Font optimization strategies
+- System font fallbacks for reliability
+- Production font loading best practices
+- Cloudflare Workers compatibility
+
+### ⚙️ **Environment Variables** (`/env-demo`)
+- Server-side environment variables
+- Client-side `NEXT_PUBLIC_` variables
+- Cloudflare Workers configuration examples
+- Security best practices
+
+### 🌐 **API Routes** (`/api/server-info`)
+- Full Node.js runtime API endpoints
+- Server metadata and request information
+- JSON response with CORS headers
+- Production-ready error handling
 
 ## Getting Started
 
