@@ -42,12 +42,12 @@ src/
 
 1. **Install dependencies:**
    ```bash
-   npm install
+   pnpm install
    ```
 
 2. **Start development server:**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 3. **Open in browser:**
@@ -61,10 +61,10 @@ src/
 # Integrating Cloudflare Workers
 
 
-1. ```npm install --save-dev wrangler@latest```
+1. ```pnpm install --save-dev wrangler@latest```
 
 
-2. ```npm install @opennextjs/cloudflare@latest```
+2. ```pnpm install @opennextjs/cloudflare@latest```
 
 
 3. Create a `wrangler.jsonc` file [Doc Link](https://opennext.js.org/cloudflare/get-started#3-create-a-wrangler-configuration-file)
@@ -89,13 +89,13 @@ cloudflare-env.d.ts
 // The build script must invoke the Next.js build command, it will be invoke by opennextjs-cloudflare build.
 "build": "next build",
 
-//npm run preview: Builds your app and serves it locally, allowing you to quickly preview your app running locally in the Workers runtime, via a single command.
+//pnpm run preview: Builds your app and serves it locally, allowing you to quickly preview your app running locally in the Workers runtime, via a single command.
 "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
 
-//npm run deploy: Builds your app, and then immediately deploys it to Cloudflare.
+//pnpm run deploy: Builds your app, and then immediately deploys it to Cloudflare.
 "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
 
-//npm run upload: Builds your app, and then uploads a new version of it to Cloudflare.
+//pnpm run upload: Builds your app, and then uploads a new version of it to Cloudflare.
 "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
 
 //cf-typegen: Generates a cloudflare-env.d.ts file at the root of your project containing the types for the env.
@@ -119,7 +119,7 @@ Cache-Control: public,max-age=31536000,immutable
 10. Add .open-next to .gitignore
 11. Remove static `@cloudflare/next-on-pages` (if necessary/just verify)
 12. Develop locally (add `initOpenNextCloudflareForDev()` block in `next.config.js`)
-13. Deploy to Cloudflare Workers (via `npm run deploy`; manual deploy via `npx wrangler deploy --config wrangler.jsonc`)
+13. Deploy to Cloudflare Workers (via `pnpm run deploy`; manual deploy via `npx wrangler deploy --config wrangler.jsonc`)
 
 ------------------------
 
@@ -175,7 +175,7 @@ Goto GH > Your Repo > Settings > Secrets > New repository secret > CLOUDFLARE_AP
 
 1. **Build and deploy:**
    ```bash
-   npm run deploy
+   pnpm run deploy
    ```
 
    This command uses `@opennextjs/cloudflare` to:
@@ -186,7 +186,7 @@ Goto GH > Your Repo > Settings > Secrets > New repository secret > CLOUDFLARE_AP
 2. **Manual deployment:**
    ```bash
    # Build the project
-   npm run build
+   pnpm run build
    
    # Deploy with OpenNext
    npx @opennextjs/cloudflare@latest
@@ -215,11 +215,11 @@ Compared to `@cloudflare/next-on-pages`:
 ## Development Scripts
 
 ```bash
-npm run dev      # Start development server
-npm run build    # Build for production
-npm run start    # Start production server
-npm run lint     # Run ESLint
-npm run deploy   # Deploy to Cloudflare Workers
+pnpm run dev      # Start development server
+pnpm run build    # Build for production
+pnpm run start    # Start production server
+pnpm run lint     # Run ESLint
+pnpm run deploy   # Deploy to Cloudflare Workers
 ```
 
 ## Environment Variables
