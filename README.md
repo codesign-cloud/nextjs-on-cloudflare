@@ -1,16 +1,18 @@
 # Next.js 15+ SSR on Cloudflare Workers
 
+Cloudflare is too cool to ignore. 
+
 A Next.js 15+ application demonstrating Server-Side Rendering (SSR) and API routes deployed on Cloudflare Workers using [OpenNext](https://opennext.js.org/cloudflare).
 
 ## Features
 
-- ✅ **Next.js 15+** with App Router
-- ✅ **Server-Side Rendering (SSR)** with real-time data
-- ✅ **API Routes** with full Node.js runtime support
-- ✅ **TypeScript** for type safety
-- ✅ **Tailwind CSS** for styling
-- ✅ **Cloudflare Workers** deployment via OpenNext
-- ✅ **Full Node.js API** compatibility (not Edge Runtime)
+- **Next.js 15+** with App Router
+- **Server-Side Rendering (SSR)** with real-time data
+- **API Routes** with full Node.js runtime support
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **Cloudflare Workers** deployment via OpenNext
+- **Full Node.js API** compatibility (not Edge Runtime)
 
 ## Project Structure
 
@@ -131,11 +133,9 @@ CLOUDFLARE_ACCOUNT_ID can be found in the URL of the dashboard (dashboard.cloudf
 
 Goto GH > Your Repo > Settings > Secrets > New repository secret > CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
 
-✅ Put non-sensitive CF variables in `wrangler.jsonc`
-
-✅ CF Secrets are set via `wrangler secret put`
-
-✅ Ensure public variables start with NEXT_PUBLIC_
+- Put non-sensitive CF variables in `wrangler.jsonc`
+- CF Secrets are set via `wrangler secret put`
+- Ensure public variables start with NEXT_PUBLIC_
 
 ---------------------------
 
@@ -205,12 +205,12 @@ The project is configured for OpenNext deployment:
 
 ## OpenNext Advantages
 
-Compared to `@cloudflare/next-on-pages`:
+Compared to `@cloudflare/next-on-pages`, using OpenNext has a host of advantages: 
 
-- ✅ **Full Node.js Runtime** - Complete Node.js API compatibility
-- ✅ **No API Restrictions** - Use any Node.js modules
-- ✅ **Better Feature Support** - All Next.js 15 features supported
-- ✅ **Simplified Configuration** - Less setup complexity
+- **Full Node.js Runtime** - Complete Node.js API compatibility
+- **No API Restrictions** - Use any Node.js modules
+- **Better Feature Support** - All Next.js 15 features supported
+- **Simplified Configuration** - Less setup complexity
 
 ## Development Scripts
 
@@ -238,6 +238,8 @@ SERVER_ID = "your-server-id"
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Cloudflare Workers](https://workers.cloudflare.com/)
 - [TypeScript](https://www.typescriptlang.org/)
+
+Co-created with Claude :) 
 
 ## License
 
